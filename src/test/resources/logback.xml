@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="1000" debug="false">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n
+			</pattern>
+		</layout>
+	</appender>
+	<appender name="hsf"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>d:/logs/summercool/hsf.log</File>
+		<Append>true</Append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n
+			</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>d:/logs/summercool/hsf.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<logger name="org.summercool.hsf" additivity="true">
+		<level value="info" />
+		<appender-ref ref="hsf" />
+	</logger>
+
+	<!-- ===================================================================== -->
+	<!-- Root logger 记录配置 -->
+	<!-- ===================================================================== -->
+	<root level="warn">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
